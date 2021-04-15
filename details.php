@@ -2,23 +2,18 @@
 session_start();
 error_reporting(0);
 require_once('class/database.php');
-class movies extends database
+if (isset($_SESSION['admin'])) {
+} else {
+    header('location:login.php');
+}
+class details extends database
 {
-    public function movieFunction()
+    public function detailsFunction()
     {
-        $sql = "SELECT * from movies_tbl";
-        $res = mysqli_query($this->link, $sql);
-        if (mysqli_num_rows($res) > 0) {
-            return $res;
-        } else {
-            return false;
-        }
+        $id = $_GET['id'];
         # code...
     }
 }
-$obj = new movies;
-$objMovie = $obj->movieFunction();
-
 
 
 ?>
@@ -56,10 +51,6 @@ $objMovie = $obj->movieFunction();
     h6 {
         font-family: 'Lato', sans-serif;
     }
-
-    img {
-        width: 100%;
-    }
     </style>
 
 
@@ -68,29 +59,14 @@ $objMovie = $obj->movieFunction();
 <body>
     <?php include('layout/navbar.php'); ?>
 
-
+    <input type="hidden" name="id" id="movie" value="<?php echo $_GET['id']; ?>">
 
 
     <div class="p-5">
-        <div class="bg-white shadow pb-3 container">
+        <div class="container">
 
-            <div class="row">
-                <?php while ($row = mysqli_fetch_assoc($objMovie)) { ?>
-                <div class="col-4 mt-3">
-                    <?php if (isset($_SESSION['admin'])) { ?>
-                    <a href="details.php?id=<?php echo $row['movie_id']; ?>">
-                        <?php } else { ?>
-                        <a href="question.php?id=<?php echo $row['movie_id']; ?>">
-                            <?php } ?>
-
-                            <img src="images/<?php echo $row['movie_image']; ?>" alt="">
-                        </a>
-
-                </div>
-                <?php } ?>
-            </div>
-
-
+            <h1>Details</h1>
+            <div id="output"></div>
         </div>
     </div>
 
@@ -100,6 +76,28 @@ $objMovie = $obj->movieFunction();
     <?php include('layout/footer.php'); ?>
 
     <?php include('layout/script.php') ?>
+    <script>
+    $(document).ready(function() {
+        let id = $('#movie').val();
+
+        var urls = ['./quesOne.php', './quesTwo.php', './quesThree.php', './quesFour.php', './quesFive.php',
+            './quesSix.php', './quesSeven.php'
+        ];
+
+        $.each(urls, function(i, u) {
+            $.ajax(u, {
+                type: "POST",
+                data: {
+                    movie: id
+                },
+                success: function(response) {
+                    console.log(response);
+                    // $('#output').fadeIn().append(response);
+                }
+            });
+        });
+    })
+    </script>
 
 
 </body>

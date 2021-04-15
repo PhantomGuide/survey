@@ -186,13 +186,13 @@ button {
 }
 
 .log_btn {
-    background-color: #05445E;
+    background-color: #313534;
     transition: 0.7s;
     color: #fff;
 }
 
 .log_btn:hover {
-    background-color: #189AB4;
+    background-color: #3B1512;
     color: #fff;
 }
 
