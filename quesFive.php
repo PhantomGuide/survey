@@ -8,7 +8,7 @@ class question extends database
         $id = $_SESSION['id'];
         $arr = array();
 
-        $sql = "SELECT ques6, count(ques6) as answer FROM data_tbl where movie_id = $id GROUP by ques6";
+        $sql = "SELECT ques5, count(ques5) as answer FROM data_tbl where movie_id = $id GROUP by ques5";
         $res = mysqli_query($this->link, $sql);
         if ($res) {
             foreach ($res as $row) {

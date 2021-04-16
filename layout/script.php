@@ -7,7 +7,8 @@
 <script src="js/wow.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/Chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 
 
 <script>

@@ -83,7 +83,7 @@ ini_set('date.timezone', 'Europe/London');
     <div class="p-5">
         <div class="container">
 
-            <h3 class="text-center mt-5">Current Time & Date (UK)</h3>
+            <h3 class="text-center font-weight-bold mt-5">Current Time & Date (UK)</h3>
             <div class="row">
                 <div class="col-md-4 offset-4">
                     <div class="row text-center">

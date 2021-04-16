@@ -53,7 +53,8 @@ $objMovie = $obj->movieFunction();
         background-color: #FBFBFB !important;
     }
 
-    h6 {
+    h6,
+    h3 {
         font-family: 'Lato', sans-serif;
     }
 
@@ -72,6 +73,12 @@ $objMovie = $obj->movieFunction();
 
 
     <div class="p-5">
+        <?php if (isset($_SESSION['admin'])) { ?>
+        <h3 class="text-center font-weight-bold pb-4">View Movie Responses:</h3>
+        <?php } else { ?>
+        <h3 class="text-center font-weight-bold pb-4">Review a Movie:</h3>
+        <?php } ?>
+
         <div class="bg-white shadow pb-3 container">
 
             <div class="row">

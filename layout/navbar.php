@@ -11,7 +11,16 @@
             <a class="nav-link text-dark font-weight-bold" href="index.php">Home</a>
         </li>
         <li class="nav-item p-1">
-            <a class="nav-link text-dark font-weight-bold" href="movies.php">Review Movies</a>
+            <a class="nav-link text-dark font-weight-bold" href="movies.php">
+                <?php if (isset($_SESSION['admin'])) { ?>
+                View Responses
+                <?php } else { ?>
+                Review Movies
+                <?php } ?>
+            </a>
+        </li>
+        <li class="nav-item p-1">
+            <a class="nav-link text-dark font-weight-bold" href="about_us.php">About Us</a>
         </li>
         <li class="nav-item p-1">
             <a class="nav-link text-dark font-weight-bold" href="login.php">Admin</a>

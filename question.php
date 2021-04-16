@@ -398,7 +398,8 @@ $objMovie = $obj->movieFunction();
                             </select> -->
                             <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
                             <div class="text-center">
-                                <input type="submit" class="btn text-center mt-4 mx-auto btn-lg btn-secondary">
+                                <input type="submit"
+                                    class="btn text-center mt-4 font-weight-bold mx-auto btn-lg btn-secondary">
                             </div>
                         </div>
 

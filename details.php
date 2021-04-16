@@ -69,8 +69,38 @@ $_SESSION['id'] = $_GET['id'];
 
             </div>
             <div class="row">
-                <div class="col-md-12 mt-4">
+                <div class="col-md-12 mt-5">
                     <canvas id="myChart"></canvas>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <canvas id="myChart1"></canvas>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <canvas id="myChart2"></canvas>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <canvas id="myChart3"></canvas>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <canvas id="myChart4"></canvas>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <canvas id="myChart5"></canvas>
 
                 </div>
             </div>
@@ -128,15 +158,15 @@ $_SESSION['id'] = $_GET['id'];
                             'rgba(255, 159, 243, 0.2)'
                         ],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(83, 92, 104, 1)',
-                            'rgba(48, 51, 107, 1)',
-                            'rgba(255, 159, 243, 1)'
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(83, 92, 104, 0.8)',
+                            'rgba(48, 51, 107, 0.8)',
+                            'rgba(255, 159, 243, 0.8)'
                         ],
                         hoverBorderColor: [
                             'rgba(255, 99, 132, 1)',
@@ -176,7 +206,7 @@ $_SESSION['id'] = $_GET['id'];
                     options: {
                         title: {
                             display: true,
-                            text: 'What age range do you fall into?',
+                            text: 'Q1: What age range do you fall into?',
                             fontSize: 25
                         },
                         legend: {
@@ -224,7 +254,7 @@ $_SESSION['id'] = $_GET['id'];
                                     size: '12'
                                 },
                                 formatter: (value) => {
-                                    return '£' + value;
+                                    return value;
                                 },
 
                             }
@@ -323,7 +353,7 @@ $_SESSION['id'] = $_GET['id'];
                     options: {
                         title: {
                             display: true,
-                            text: 'What genre would you classify this movie?',
+                            text: 'Q2: What genre would you classify this movie?',
                             fontSize: 25
                         },
                         legend: {
@@ -374,6 +404,740 @@ $_SESSION['id'] = $_GET['id'];
                 });
             }
         });
+        $.ajax({
+            type: "GET",
+            url: "quesThree.php",
+            dataType: 'json',
+            success: function(data) {
+                let type = [];
+                let amount = [];
+                let total = 0;
+                console.log(data);
+
+                $.each(data, function(i, item) {
+                    total += parseInt(item.answer);
+                });
+                $.each(data, function(i, item) {
+                    console.log(item);
+                    type.push(item.ques3);
+                    amount.push((parseInt(item.answer) / total * 100).toFixed(2));
+                });
+                console.log(total);
+                console.log(amount, type);
+                var chartPie = {
+                    labels: type,
+                    datasets: [{
+                        label: 'Movie Genre',
+                        data: amount,
+                        hoverBorderWidth: 10,
+
+                        borderColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(83, 92, 104, 0.2)',
+                            'rgba(48, 51, 107, 0.2)',
+
+                            'rgba(255, 159, 243, 0.2)'
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        hoverBorderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        hoverBackgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        borderWidth: 2,
+                        hoverOffset: 4,
+                        offset: 6
+                    }]
+                };
+                var ctx = document.getElementById('myChart1').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: chartPie,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Q3: Did you prefer the male or female supporting cast?',
+                            fontSize: 25
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                        },
+                        animation: {
+                            animateScale: true
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItems, data) {
+                                    return data.labels[tooltipItems.index] +
+                                        " : " +
+                                        data.datasets[tooltipItems.datasetIndex].data[
+                                            tooltipItems.index] +
+                                        '%';
+                                }
+                            }
+                        },
+                        plugins: {
+                            datalabels: {
+                                color: '#fff',
+                                padding: 6,
+                                anchor: 'end',
+                                fillColor: '#000',
+                                align: 'start',
+                                offset: -10,
+                                borderWidth: 2,
+                                borderColor: '#fff',
+                                borderRadius: 25,
+                                backgroundColor: (context) => {
+                                    return context.dataset.backgroundColor;
+                                },
+                                font: {
+                                    weight: 'bold',
+
+                                    size: '12'
+                                },
+                                formatter: (value) => {
+                                    return value + '%';
+                                },
+
+                            }
+                        }
+
+                    }
+                });
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "quesFour.php",
+            dataType: 'json',
+            success: function(data) {
+                let type = [];
+                let amount = [];
+                let total = 0;
+                console.log(data);
+                $.each(data, function(i, item) {
+                    total += parseInt(item.answer);
+                });
+
+                $.each(data, function(i, item) {
+                    console.log(item);
+                    type.push(item.ques4);
+                    amount.push(item.answer);
+                });
+                console.log(total);
+                console.log(amount, type);
+                var chartPie = {
+                    labels: type,
+                    datasets: [{
+                        label: 'Age Range',
+                        data: amount,
+                        hoverBorderWidth: 10,
+
+                        borderColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(83, 92, 104, 0.2)',
+                            'rgba(48, 51, 107, 0.2)',
+
+                            'rgba(255, 159, 243, 0.2)'
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(83, 92, 104, 0.8)',
+                            'rgba(48, 51, 107, 0.8)',
+                            'rgba(255, 159, 243, 0.8)'
+                        ],
+                        hoverBorderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        hoverBackgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        borderWidth: 2,
+                        hoverOffset: 4,
+                        offset: 6
+
+                    }]
+                };
+
+                var ctx = document.getElementById('myChart2').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartPie,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Q4: Did you think the ending of the movie was fitting?',
+                            fontSize: 25
+                        },
+                        legend: {
+                            display: false,
+                            position: 'bottom',
+                        },
+                        animation: {
+                            animateScale: true
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItems, data) {
+                                    return "Total People: " +
+
+                                        data.datasets[tooltipItems.datasetIndex].data[
+                                            tooltipItems.index];
+                                }
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    precision: 0
+                                }
+                            }]
+                        },
+                        plugins: {
+                            datalabels: {
+                                color: '#fff',
+                                padding: 6,
+                                anchor: 'end',
+                                fillColor: '#000',
+                                align: 'start',
+                                offset: -10,
+                                borderWidth: 2,
+                                borderColor: '#fff',
+                                borderRadius: 25,
+                                backgroundColor: (context) => {
+                                    return context.dataset.backgroundColor;
+                                },
+                                font: {
+                                    weight: 'bold',
+
+                                    size: '12'
+                                },
+                                formatter: (value) => {
+                                    return value;
+                                },
+
+                            }
+                        }
+
+
+
+
+                    }
+                });
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "quesFive.php",
+            dataType: 'json',
+            success: function(data) {
+                let type = [];
+                let amount = [];
+                let total = 0;
+                console.log(data);
+                $.each(data, function(i, item) {
+                    total += parseInt(item.answer);
+                });
+
+                $.each(data, function(i, item) {
+                    console.log(item);
+                    type.push(item.ques5);
+                    amount.push(item.answer);
+                });
+                console.log(total);
+                console.log(amount, type);
+                var chartPie = {
+                    labels: type,
+                    datasets: [{
+                        label: 'Age Range',
+                        data: amount,
+                        hoverBorderWidth: 10,
+
+                        borderColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(83, 92, 104, 0.2)',
+                            'rgba(48, 51, 107, 0.2)',
+
+                            'rgba(255, 159, 243, 0.2)'
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(83, 92, 104, 0.8)',
+                            'rgba(48, 51, 107, 0.8)',
+                            'rgba(255, 159, 243, 0.8)'
+                        ],
+                        hoverBorderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        hoverBackgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        borderWidth: 2,
+                        hoverOffset: 4,
+                        offset: 6
+
+                    }]
+                };
+
+                var ctx = document.getElementById('myChart3').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartPie,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Q5: Would you like to see a sequel?',
+                            fontSize: 25
+                        },
+                        legend: {
+                            display: false,
+                            position: 'bottom',
+                        },
+                        animation: {
+                            animateScale: true
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItems, data) {
+                                    return "Total People: " +
+
+                                        data.datasets[tooltipItems.datasetIndex].data[
+                                            tooltipItems.index];
+                                }
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    precision: 0
+                                }
+                            }]
+                        },
+                        plugins: {
+                            datalabels: {
+                                color: '#fff',
+                                padding: 6,
+                                anchor: 'end',
+                                fillColor: '#000',
+                                align: 'start',
+                                offset: -10,
+                                borderWidth: 2,
+                                borderColor: '#fff',
+                                borderRadius: 25,
+                                backgroundColor: (context) => {
+                                    return context.dataset.backgroundColor;
+                                },
+                                font: {
+                                    weight: 'bold',
+
+                                    size: '12'
+                                },
+                                formatter: (value) => {
+                                    return value;
+                                },
+
+                            }
+                        }
+
+
+
+
+                    }
+                });
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "quesSix.php",
+            dataType: 'json',
+            success: function(data) {
+                let type = [];
+                let amount = [];
+                let total = 0;
+                console.log(data);
+                $.each(data, function(i, item) {
+                    total += parseInt(item.answer);
+                });
+
+                $.each(data, function(i, item) {
+                    console.log(item);
+                    type.push(item.ques6);
+                    amount.push(item.answer);
+                });
+                console.log(total);
+                console.log(amount, type);
+                var chartPie = {
+                    labels: type,
+                    datasets: [{
+                        label: 'Age Range',
+                        data: amount,
+                        hoverBorderWidth: 10,
+
+                        borderColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(83, 92, 104, 0.2)',
+                            'rgba(48, 51, 107, 0.2)',
+
+                            'rgba(255, 159, 243, 0.2)'
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(83, 92, 104, 0.8)',
+                            'rgba(48, 51, 107, 0.8)',
+                            'rgba(255, 159, 243, 0.8)'
+                        ],
+                        hoverBorderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        hoverBackgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        borderWidth: 2,
+                        hoverOffset: 4,
+                        offset: 6
+
+                    }]
+                };
+
+                var ctx = document.getElementById('myChart4').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartPie,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Q6: Would you recommend this movie to a family member or friend?',
+                            fontSize: 25
+                        },
+                        legend: {
+                            display: false,
+                            position: 'bottom',
+                        },
+                        animation: {
+                            animateScale: true
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItems, data) {
+                                    return "Total People: " +
+
+                                        data.datasets[tooltipItems.datasetIndex].data[
+                                            tooltipItems.index];
+                                }
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    precision: 0
+                                }
+                            }]
+                        },
+                        plugins: {
+                            datalabels: {
+                                color: '#fff',
+                                padding: 6,
+                                anchor: 'end',
+                                fillColor: '#000',
+                                align: 'start',
+                                offset: -10,
+                                borderWidth: 2,
+                                borderColor: '#fff',
+                                borderRadius: 25,
+                                backgroundColor: (context) => {
+                                    return context.dataset.backgroundColor;
+                                },
+                                font: {
+                                    weight: 'bold',
+
+                                    size: '12'
+                                },
+                                formatter: (value) => {
+                                    return value;
+                                },
+
+                            }
+                        }
+
+
+
+
+                    }
+                });
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "quesSeven.php",
+            dataType: 'json',
+            success: function(data) {
+                let type = [];
+                let amount = [];
+                let total = 0;
+                console.log(data);
+                $.each(data, function(i, item) {
+                    total += parseInt(item.answer);
+                });
+
+                $.each(data, function(i, item) {
+                    console.log(item);
+                    type.push(item.ques7 + ' 🌟');
+                    amount.push(item.answer);
+                });
+                console.log(total);
+                console.log(amount, type);
+                var chartPie = {
+                    labels: type,
+                    datasets: [{
+                        label: 'Age Range',
+                        data: amount,
+                        hoverBorderWidth: 10,
+
+                        borderColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(83, 92, 104, 0.2)',
+                            'rgba(48, 51, 107, 0.2)',
+
+                            'rgba(255, 159, 243, 0.2)'
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(83, 92, 104, 0.8)',
+                            'rgba(48, 51, 107, 0.8)',
+                            'rgba(255, 159, 243, 0.8)'
+                        ],
+                        hoverBorderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        hoverBackgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(83, 92, 104, 1)',
+                            'rgba(48, 51, 107, 1)',
+
+                            'rgba(255, 159, 243, 1)'
+                        ],
+                        borderWidth: 2,
+                        hoverOffset: 4,
+                        offset: 6
+
+                    }]
+                };
+
+                var ctx = document.getElementById('myChart5').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartPie,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Q7: What rating would you give this movie out of 10?',
+                            fontSize: 25
+                        },
+                        legend: {
+                            display: false,
+                            position: 'bottom',
+                        },
+                        animation: {
+                            animateScale: true
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItems, data) {
+                                    return "Total People: " +
+
+                                        data.datasets[tooltipItems.datasetIndex].data[
+                                            tooltipItems.index];
+                                }
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    precision: 0
+                                }
+                            }]
+                        },
+                        plugins: {
+                            datalabels: {
+                                color: '#fff',
+                                padding: 6,
+                                anchor: 'end',
+                                fillColor: '#000',
+                                align: 'start',
+                                offset: -10,
+                                borderWidth: 2,
+                                borderColor: '#fff',
+                                borderRadius: 25,
+                                backgroundColor: (context) => {
+                                    return context.dataset.backgroundColor;
+                                },
+                                font: {
+                                    weight: 'bold',
+
+                                    size: '12'
+                                },
+                                formatter: (value) => {
+                                    return value;
+                                },
+
+                            }
+                        }
+
+
+
+
+                    }
+                });
+            }
+        });
+
     })
     </script>
 
