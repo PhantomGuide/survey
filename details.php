@@ -2,10 +2,12 @@
 session_start();
 error_reporting(0);
 require_once('class/database.php');
+//This session variable will check if the user is admin then let will let him enter this place
 if (isset($_SESSION['admin'])) {
 } else {
     header('location:login.php');
 }
+//This session id variable will go all the quesOne.php, quesTwo.php pages and activate the functionality
 $_SESSION['id'] = $_GET['id'];
 
 

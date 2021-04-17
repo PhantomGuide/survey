@@ -7,7 +7,7 @@ class question extends database
     {
         $id = $_SESSION['id'];
         $arr = array();
-
+        //This function will show all the result of question 7 from database
         $sql = "SELECT ques7, count(ques7) as answer FROM data_tbl where movie_id = $id GROUP by ques7";
         $res = mysqli_query($this->link, $sql);
         if ($res) {

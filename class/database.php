@@ -8,10 +8,7 @@ class database
     private $password = "";
     private $dbname = "movie";
 
-    // private $hostname = "remotemysql.com";
-    // private $username = "u5CBLhyagE";
-    // private $password = "lNOLqk1oAj";
-    // private $dbname = "u5CBLhyagE";
+
 
 
     // This $link variable is a part of database class which will help you run all the query

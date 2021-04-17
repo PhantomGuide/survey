@@ -502,8 +502,8 @@ $objMovie = $obj->movieFunction();
             toolbarSettings: {
                 toolbarPosition: 'bottom', // both bottom
                 toolbarExtraButtons: [],
-                showNextButton: false, // show/hide a Next button
-                showPreviousButton: false, // show/hide a Previous button
+                showNextButton: true, // show/hide a Next button
+                showPreviousButton: true, // show/hide a Previous button
             },
             // anchor options
             anchorSettings: {

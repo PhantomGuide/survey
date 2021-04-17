@@ -4,6 +4,7 @@ error_reporting(0);
 require_once('class/database.php');
 class movies extends database
 {
+    //This movieFunction will show all the movies list from the database
     public function movieFunction()
     {
         $sql = "SELECT * from movies_tbl";

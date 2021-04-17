@@ -12,7 +12,7 @@ class signInUp extends database
         if (isset($_POST['signIn'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
+            //$sql variable will get the username and password from admin_tbl
             $sql = "select * from admin_tbl where username = '$username' ";
             $res = mysqli_query($this->link, $sql);
             if (mysqli_num_rows($res) > 0) {

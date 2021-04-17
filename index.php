@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-
+//Date and time is set to London time
 ini_set('date.timezone', 'Europe/London');
 
 
